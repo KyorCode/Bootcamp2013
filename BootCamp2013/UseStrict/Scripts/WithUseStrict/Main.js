@@ -166,4 +166,5 @@
     printToConsole(functions.argumentsCalleeRight()(5));
     // 120
 
+    withExample.usage();
 })();
