@@ -152,9 +152,19 @@
             };
         }(),
         withExample = function () {
+            var usage = function() {
+                var obj = {};
+
+                with ({ o: obj }) {
+                    o.name = "QFrame";
+                    o.url = "http://www.qframe.be";
+                };
+                
+                printToConsole(obj);
+            };
 
             return {
-
+                usage : usage
             };
         }();
 
@@ -168,8 +178,8 @@
     //functions.setArguments();
     //functions.identicalArguments("test1", "test2");
     // test2
-    functions.argumentsCallee()(5);
+    //functions.argumentsCallee()(5);
     // 120
 
-
+    withExample.usage();
 })();
