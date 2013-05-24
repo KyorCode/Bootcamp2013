@@ -39,7 +39,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Index.html" />
-    <Content Include="Scripts\Main.js" />
+    <Content Include="Scripts\WithoutUseStrict\Main.js" />
+    <Content Include="Scripts\WithUseStrict\Main.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -53,10 +54,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\WithoutUseStrict\" />
-    <Folder Include="Scripts\WithUseStrict\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
