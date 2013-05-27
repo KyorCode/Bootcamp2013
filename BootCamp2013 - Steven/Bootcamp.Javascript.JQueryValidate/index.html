@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    
+    <head>
+        
+        <title>JQuery Validate</title>
+        <link href="forms.css" rel="stylesheet" />
+
+    </head>
+
+    <body>
+        
+        <form action="#" method="get">
+	        <fieldset>
+	            <legend>JQuery Validate</legend>
+                
+	            <br />
+
+	            <p>
+	                <label for="Name">Name (required, between 5 and 10 characters)</label>
+	                <input 
+                        id="Name" name="Name" type="text" 
+	                    data-val="true" 
+	                    data-val-required=""
+	                    data-val-length="" 
+	                    data-val-length-min="5"
+                        data-val-length-max="10" />
+                    <span data-valmsg-replace="true" data-valmsg-for="Name"></span>
+	            </p>
+
+	            <p>
+	                <label for="INSZ">INSZ</label>
+	                <input 
+                        id="INSZ" name="INSZ" type="text" 
+	                    data-val="true" 
+	                    data-val-required=""
+	                    data-val-insznummer="" />
+                    <span data-valmsg-replace="true" data-valmsg-for="INSZ"></span>
+	            </p>
+
+	            <p>
+	                <label for="Age">Age (required, between 18 and 60)</label>
+	                <input 
+                        id="Age" name="Age" type="text" 
+	                    data-val="true" 
+	                    data-val-required=""
+	                    data-val-range="" 
+	                    data-val-range-min="18"
+                        data-val-range-max="60" />
+                    <span data-valmsg-replace="true" data-valmsg-for="Age"></span>
+	            </p>
+
+	            <p>
+	                <label for="Email">Email (required)</label>
+	                <input
+                        id="Email" name="Email" type="text" 
+	                    data-val="true"
+	                    data-val-required="" 
+                        data-val-email="" />
+                    <span data-valmsg-replace="true" data-valmsg-for="Email"></span>
+	            </p>
+
+	            <p>
+	                <label for="URL">URL (optional)</label>
+	                <input 
+                        id="URL" name="URL" type="text" 
+	                    data-val="true"
+                        data-val-url="" />
+                    <span data-valmsg-replace="true" data-valmsg-for="URL"></span>
+	            </p>
+
+	            <p>
+	                <label for="Comment">Your comment (required)</label>
+	                <textarea 
+                        id="Comment" name="Comment" 
+	                    data-val="true" 
+                        data-val-required=""></textarea>
+                    <span data-valmsg-replace="true" data-valmsg-for="Comment"></span>
+	            </p>
+
+		        <p class="buttontoolbar">
+			        <input class="submit" type="submit" value="Submit" />
+		        </p>
+	        </fieldset>
+        </form>
+        
+        <script src="scripts/jquery-1.9.1.js"></script>
+        <script src="scripts/jquery.validate.js"></script>
+        <script src="scripts/jquery.validate.unobtrusive.js"></script>
+        <script src="scripts/jquery.validate.insznummer.js"></script>
+
+    </body>
+
+</html>

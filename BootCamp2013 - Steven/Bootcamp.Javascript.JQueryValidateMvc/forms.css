@@ -1,0 +1,194 @@
+﻿body
+{
+    font-family: sans-serif;
+    font-size: 12px;
+}
+
+/* FORM STYLES */
+form
+{
+    margin: 0;
+}
+
+form fieldset
+{
+    background-color: #ededdf;
+    border: 1px solid #adadad;
+    padding: 7px;
+    padding-top: 0;
+    margin-bottom: 10px;
+}
+
+form legend
+{
+    border: 1px dotted #666666;
+    background-color: #CCC;
+    color: #000000;
+    padding: 2px 4px 2px 4px;
+}
+
+form p
+{
+    margin: 0 0 10px 0;
+    border-bottom: 1px dotted #bbbbbb;
+    float: left;
+    clear: both;
+    width: 100%;
+    padding-bottom: 5px;
+}
+
+form p input[type="text"],
+form p input[type="password"],
+form p select,
+form p textarea
+{
+    float: left;
+    margin-top: 0;
+    margin-bottom: 2px;
+    border: 1px solid #ccc;
+    padding: 3px;
+    width: 220px;
+}
+
+form p input[type="text"]:focus,
+form p input[type="password"]:focus,
+form p select:focus,
+form p textarea:focus
+{
+    border: 1px solid #666;
+    background-color: #ffd;
+}
+
+form p input[type="text"] + input[type="text"]
+{
+    margin-left: 5px;
+}
+
+form p input[type="checkbox"],
+form p input[type="radio"],
+form p input[type="file"]
+{
+    float: left;
+    margin-top: 0;
+    margin-bottom: 2px;
+    border: 1px solid #fff;
+}
+
+form p input[type="file"]
+{
+    background-color: #fff;
+}
+
+form p select
+{
+    width: 228px;
+}
+
+form p textarea
+{
+    float: left;
+    display: block;
+    width: 50%;
+    height: 140px;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+form p label
+{
+    float: left;
+    width: 300px;
+    font-size: 100%;
+    padding: 3px;
+}
+
+/* VALIDATION */
+.input-validation-error
+{
+    background-color: #F7E9E9;
+}
+
+.field-validation-error
+{
+    background-color: #ffbbbb;
+    border: 1px solid #cacaca;
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    color: #333;
+    padding: 4px 10px 4px 10px;
+    margin-left: 5px;
+    float: left;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    clear: left;
+    color: #ffffff;
+    background-position: 3px 5px;
+    background-repeat: no-repeat;
+    background-color: #ef1100;
+    border: 1px solid #ba1212;
+    padding: 6px 5px 2px 2px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.validation-summary-errors span
+{
+    display: none;
+}
+
+.validation-summary-errors ul
+{
+    clear: left;
+    margin: 0 5px 5px 25px;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* BUTTON TOOLBAR */
+.buttontoolbar
+{
+    clear: none;
+    float: none;
+    width: 100%;
+    color: #000000;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    background-color: #cccccc;
+    padding-top: 2px;
+    padding-bottom: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.buttontoolbar input[type="submit"],
+.buttontoolbar input[type="button"],
+.buttontoolbar input[type="reset"]
+{
+    font-family: Verdana, Geneva, sans-serif;
+    margin: 0;
+    padding: 0;
+    float: left;
+    font-size: 0.9em;
+    cursor: pointer;
+    border: none;
+    text-align: left;
+    width: auto;
+    background-repeat: no-repeat;
+    color: #000000;
+    margin-left: 5px;
+    padding-top: 1px;
+    padding-bottom: 2px;
+    background-color: #cccccc;
+    text-decoration: none;
+}
