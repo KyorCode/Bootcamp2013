@@ -5,11 +5,11 @@
         var getValue = function (id) {
             return document.getElementById(id).value;
         },
-            add = function (a, b) {
+            add = function (a, b,output) {
                 var valueA = getValue(a);
                 var valueB = getValue(b);
                 debugger;
-                return valueA + valueB;
+                document.getElementById(output).innerText = parseInt(valueA) + parseInt(valueB);
             };
 
         return {

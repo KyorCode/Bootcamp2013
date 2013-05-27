@@ -51,7 +51,8 @@ namespace Bundling.App_Start
             //    .Include("~/Scripts/lib/jquery/jquery-{version}.js");
 
             var appLibBundle = new ScriptBundle("~/Scripts/app/lib")
-                .Include("~/Scripts/lib/Main.js");
+                .Include("~/Scripts/app/Main.js")
+                .Include("~/Scripts/app/Presenter.js");
 
             bundles.Add(jqueryBundle);
             bundles.Add(appLibBundle);
