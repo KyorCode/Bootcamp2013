@@ -62,7 +62,7 @@
                 // value
                 // name
 
-                obj.value = false; // throws exception : writalble : false
+                //obj.value = false; // throws exception : writalble : false
 
                 Object.defineProperty(obj, "value",
                     {
@@ -100,9 +100,9 @@
                 
                 //function(eval){}
 
-                //eval("var a = false;");
-                //printToConsole( typeof a );
-                // undefined
+                eval("var a = false;");
+                printToConsole( typeof a );
+                 //undefined
             };
 
             return {
@@ -141,10 +141,10 @@
             var usage = function() {
                 var obj = {};
 
-                with ({ o: obj }) { // throws exception: strict mode code may not include a with statement
-                    o.name = "QFrame";
-                    o.url = "http://www.qframe.be";
-                };
+                //with ({ o: obj }) { // throws exception: strict mode code may not include a with statement
+                //    o.name = "QFrame";
+                //    o.url = "http://www.qframe.be";
+                //};
                
             };
 
@@ -158,13 +158,13 @@
     //variablesAndProperties.multipleDefine();
     //variablesAndProperties.propertyDescriptor();
 
-    //evalExamples.useEval();
+    evalExamples.useEval();
     
     //functions.setArguments();
     //functions.identicalArguments("test1", "test2");
     //printToConsole(functions.argumentsCalleeWrong()(5)); // throws exception: callee may not be accessed for calls on them
-    printToConsole(functions.argumentsCalleeRight()(5));
+    //printToConsole(functions.argumentsCalleeRight()(5));
     // 120
 
-    withExample.usage();
+    //withExample.usage();
 })();

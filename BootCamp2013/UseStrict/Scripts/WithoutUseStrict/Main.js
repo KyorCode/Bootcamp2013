@@ -170,7 +170,7 @@
 
     //variablesAndProperties.noGlobalAssignment();
     //variablesAndProperties.extensibleObject();
-    //variablesAndProperties.multipleDefine();
+    variablesAndProperties.multipleDefine();
     //variablesAndProperties.propertyDescriptor();
 
     //evalExamples.useEval();
@@ -181,5 +181,5 @@
     //functions.argumentsCallee()(5);
     // 120
 
-    withExample.usage();
+    //withExample.usage();
 })();
