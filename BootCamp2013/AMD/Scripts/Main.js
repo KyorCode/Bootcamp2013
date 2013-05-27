@@ -3,8 +3,8 @@
     var root = this;
 
     require.config({
-        baseUrl: 'Scripts/app',
-         urlArgs: "v=" +  (new Date()).getTime()
+        baseUrl: 'Scripts/app'
+         //urlArgs: "v=" +  (new Date()).getTime()
     });
 
     defineLibraries();
