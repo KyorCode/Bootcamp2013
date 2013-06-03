@@ -39,8 +39,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Index.html" />
-    <Content Include="Scripts\WithoutUseStrict\Main.js" />
-    <Content Include="Scripts\WithUseStrict\Main.js" />
+    <Content Include="Scripts\WithoutUseStrict\With.js" />
+    <Content Include="Scripts\WithoutUseStrict\Functions.js" />
+    <Content Include="Scripts\WithoutUseStrict\Eval.js" />
+    <Content Include="Scripts\WithoutUseStrict\VariablesAndProperties.js" />
+    <Content Include="Scripts\WithUseStrict\Functions.js" />
+    <Content Include="Scripts\WithUseStrict\Eval.js" />
+    <Content Include="Scripts\WithUseStrict\VariablesAndProperties.js" />
+    <Content Include="Scripts\WithUseStrict\With.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
