@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    
+    <head>
+        
+        <title>Global variables</title>
+        <link href="forms.css" rel="stylesheet" />
+
+    </head>
+
+    <body>
+        
+        <form action="#" method="get">
+            <fieldset>
+                <legend>Global variables</legend>
+                
+                <br />
+
+                <p>
+                    <label for="shoppingCartTotal">Number of items in cart:</label>
+                    <input id="shoppingCartTotal" name="shoppingCartTotal" type="text" value="0" readonly="readonly" disabled="disabled"/>
+                    <input type="button" value="Add item to cart" onclick="shoppingCart.addItemToCart(); shoppingCart.showNumberOfItemsInCart();"/>
+                </p>
+
+                <p>
+                    <label for="numberOfTweetsRetrieved">Number of tweets retrieved:</label>
+                    <input id="numberOfTweetsRetrieved" name="numberOfTweetsRetrieved" type="text" value="0" readonly="readonly" disabled="disabled"/>
+                </p>
+            </fieldset>
+        </form>
+
+        <script src="scripts/shoppingcart.js"></script>
+        <script src="scripts/twitter.js"></script>
+
+    </body>
+
+</html>

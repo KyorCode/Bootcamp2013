@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    
+    <head>
+        
+        <title>Timer</title>
+        <link href="timer.css" rel="stylesheet" />
+
+    </head>
+
+    <body>
+        
+        <div id="timerContainer">
+            <div id="timerSurface">
+                <div id="timerHeaders">
+                    <div class="headerText">MIN</div>
+                    <div class="headerText">SEC</div>
+                    <div class="headerText">MS</div>
+                </div>
+                <div id="timerNumbers">
+                    <div id="minutes" class="timerText"></div>
+                    <div id="seconds" class="timerText"></div>
+                    <div id="milliseconds" class="timerText"></div>
+                </div>
+            </div>
+            <div id="buttonSurface">
+                <input id="startButton" type="button" value="Start" class="button" />
+                <input id="pauseButton" type="button" value="Pause" class="button" />
+                <input id="clearButton" type="button" value="Reset" class="button" />
+            </div>
+        </div>
+
+        <script src="scripts/script.js"></script>
+        <script>
+            initTimer();
+        </script>
+    </body>
+
+</html>

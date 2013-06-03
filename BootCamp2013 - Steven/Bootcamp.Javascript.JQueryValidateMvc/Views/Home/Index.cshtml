@@ -1,0 +1,80 @@
+﻿@using Bootcamp.Javascript.JQueryValidateMvc.Extensions
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    
+    <head>
+        
+        <title>JQuery Validate</title>
+        <link href="~/forms.css" rel="stylesheet" />
+
+    </head>
+
+    <body>
+        
+        <form action="#" method="get">
+	        <fieldset>
+	            <legend>JQuery Validate</legend>
+                
+	            <br />
+
+	            <p>
+	                @Html.Label("Name", "Name (required, between 5 and 10 characters)")
+	                @Html.TextBox("Name", null, Attributes.Create()
+	                     .WithDataValRequired()
+	                     .WithDataValLengthRange(5, 10))
+	                @Html.ValidationMessage("Name")
+	            </p>
+
+	            <p>
+	                @Html.Label("INSZ", "INSZ-nummer (required)")
+                    @Html.TextBox("INSZ", null, Attributes.Create()
+                         .WithDataValRequired()
+                         .WithDataValInsznummer())
+                    @Html.ValidationMessage("INSZ")
+	            </p>
+
+	            <p>
+	                @Html.Label("Age", "Age (required, between 18 and 60)")
+                    @Html.TextBox("Age", null, Attributes.Create()
+                         .WithDataValRequired()
+                         .WithDataValRange(18, 60))
+                    @Html.ValidationMessage("Age")
+	            </p>
+
+	            <p>
+	                @Html.Label("Email", "Email (required)")
+                    @Html.TextBox("Email", null, Attributes.Create()
+                         .WithDataValRequired()
+                         .WithDataValEmail())
+                    @Html.ValidationMessage("Email")
+	            </p>
+
+	            <p>
+	                @Html.Label("URL", "URL (optional)")
+                    @Html.TextBox("URL", null, Attributes.Create()
+                         .WithDataValUrl())
+                    @Html.ValidationMessage("URL")
+	            </p>
+
+	            <p>
+	                @Html.Label("Comment", "URL Your comment (required)")
+                    @Html.TextArea("Comment", null, Attributes.Create()
+                         .WithDataValRequired())
+                    @Html.ValidationMessage("Comment")
+	            </p>
+
+		        <p class="buttontoolbar">
+			        <input class="submit" type="submit" value="Submit" />
+		        </p>
+	        </fieldset>
+        </form>
+        
+        <script src="~/scripts/jquery-1.9.1.js"></script>
+        <script src="~/scripts/jquery.validate.js"></script>
+        <script src="~/scripts/jquery.validate.unobtrusive.js"></script>
+        <script src="~/scripts/jquery.validate.insznummer.js"></script>
+
+    </body>
+
+</html>

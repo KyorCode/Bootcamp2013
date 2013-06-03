@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootcamp.Javascript.GlobalVariables", "Bootcamp.Javascript.GlobalVariables\Bootcamp.Javascript.GlobalVariables.csproj", "{A59BB0B2-D687-4625-B19C-E4E289E2B198}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootcamp.Javascript.RMP", "Bootcamp.Javascript.RMP\Bootcamp.Javascript.RMP.csproj", "{22C0B05D-D414-403F-82D1-7E26084C2D68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootcamp.Javascript.JSHint", "Bootcamp.Javascript.JSHint\Bootcamp.Javascript.JSHint.csproj", "{7387633F-1E25-4671-9D96-18997A2CF2BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootcamp.Javascript.JQueryValidate", "Bootcamp.Javascript.JQueryValidate\Bootcamp.Javascript.JQueryValidate.csproj", "{0F7B18C6-A7C6-48E7-AAEC-940CD40C5F94}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example 1", "Example 1", "{19D9CAD8-3CE4-45D5-8E72-02A30E194926}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example 2", "Example 2", "{605EABF9-8EFB-4EE4-9305-0253B8477826}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example 3", "Example 3", "{7BCC7015-8C08-4262-883E-CB525436E4B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example 4", "Example 4", "{4183ED65-2B8A-4F39-9742-F4737ACEC761}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootcamp.Javascript.JQueryValidateMvc", "Bootcamp.Javascript.JQueryValidateMvc\Bootcamp.Javascript.JQueryValidateMvc.csproj", "{002EAB74-2076-45E3-B52E-55010B9712BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A59BB0B2-D687-4625-B19C-E4E289E2B198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A59BB0B2-D687-4625-B19C-E4E289E2B198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A59BB0B2-D687-4625-B19C-E4E289E2B198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A59BB0B2-D687-4625-B19C-E4E289E2B198}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22C0B05D-D414-403F-82D1-7E26084C2D68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22C0B05D-D414-403F-82D1-7E26084C2D68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22C0B05D-D414-403F-82D1-7E26084C2D68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22C0B05D-D414-403F-82D1-7E26084C2D68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7387633F-1E25-4671-9D96-18997A2CF2BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7387633F-1E25-4671-9D96-18997A2CF2BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7387633F-1E25-4671-9D96-18997A2CF2BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7387633F-1E25-4671-9D96-18997A2CF2BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F7B18C6-A7C6-48E7-AAEC-940CD40C5F94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F7B18C6-A7C6-48E7-AAEC-940CD40C5F94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F7B18C6-A7C6-48E7-AAEC-940CD40C5F94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F7B18C6-A7C6-48E7-AAEC-940CD40C5F94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{002EAB74-2076-45E3-B52E-55010B9712BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{002EAB74-2076-45E3-B52E-55010B9712BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{002EAB74-2076-45E3-B52E-55010B9712BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{002EAB74-2076-45E3-B52E-55010B9712BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A59BB0B2-D687-4625-B19C-E4E289E2B198} = {19D9CAD8-3CE4-45D5-8E72-02A30E194926}
+		{22C0B05D-D414-403F-82D1-7E26084C2D68} = {605EABF9-8EFB-4EE4-9305-0253B8477826}
+		{7387633F-1E25-4671-9D96-18997A2CF2BF} = {7BCC7015-8C08-4262-883E-CB525436E4B9}
+		{0F7B18C6-A7C6-48E7-AAEC-940CD40C5F94} = {4183ED65-2B8A-4F39-9742-F4737ACEC761}
+		{002EAB74-2076-45E3-B52E-55010B9712BE} = {4183ED65-2B8A-4F39-9742-F4737ACEC761}
+	EndGlobalSection
+EndGlobal
