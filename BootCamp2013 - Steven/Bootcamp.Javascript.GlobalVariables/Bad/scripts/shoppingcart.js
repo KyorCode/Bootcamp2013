@@ -2,6 +2,9 @@
 
 function addItemToCart() {
     total += 1;
+    
+    // This works too
+    // window.total += 1;
 }
 
 function showNumberOfItemsInCart() {

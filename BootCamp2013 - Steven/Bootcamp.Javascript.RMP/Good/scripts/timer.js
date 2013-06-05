@@ -32,7 +32,22 @@ app.timer = (function(window, pubsub) {
             }
         },
         
-        elapsed = function() {
+        pause = function() {
+            window.clearInterval(timerId);
+            timerId = -1;
+            pubsub.publish('timerPaused');
+        },
+        
+        clear = function() {
+            pause();
+            seconds = 0;
+            minutes = 0;
+            milliseconds = 0;
+            reportProgress();
+            pubsub.publish('timerCleared');
+        },
+
+        elapsed = function () {
             milliseconds += interval;
 
             if (milliseconds >= 1000) {
@@ -47,21 +62,6 @@ app.timer = (function(window, pubsub) {
             }
 
             reportProgress();
-        },
-        
-        pause = function() {
-            window.clearInterval(timerId);
-            timerId = -1;
-            pubsub.publish('timerPaused');
-        },
-        
-        clear = function() {
-            pause();
-            seconds = 0;
-            minutes = 0;
-            milliseconds = 0;
-            reportProgress();
-            pubsub.publish('timerCleared');
         };
 
     return {
