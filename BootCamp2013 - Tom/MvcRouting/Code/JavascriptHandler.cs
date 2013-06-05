@@ -22,7 +22,7 @@ namespace MvcRouting.Code
             var response = context.Response;
             var request = context.Request;
 
-            if(string.IsNullOrEmpty(_filename))
+            if (string.IsNullOrEmpty(_filename))
                 Return404(response);
 
             var url = request.AppRelativeCurrentExecutionFilePath.Substring(2);
@@ -60,6 +60,5 @@ namespace MvcRouting.Code
         {
             return request.MapPath(virtualPath);
         }
-
     }
 }

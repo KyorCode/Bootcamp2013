@@ -1,11 +1,11 @@
 ﻿define('bootstrapper',
-    ['jquery', 'presenter'],
-    function ($, presenter) {
+    ['logger'],
+    function (logger) {
         var init = function () {
-            $('#log').append('<li>bootstrapper loaded!</li>');
+            logger.appendToLog("Bootstrapper loaded!");
         },
             run = function () {
-                presenter.appendToLog("This was appended from bootstrapper");
+                logger.appendToLog("This was appended from bootstrapper run function!");
             };
 
         init();

@@ -1,0 +1,541 @@
+-------------------------------- 
+MAIN.JS
+--------------------------------
+
+(function () {
+
+    var root = this;
+
+    require.config({
+        baseUrl: 'Scripts/app',
+        /// urlArgs: "v=" +  (new Date()).getTime()  <= Cache Buster
+    });
+
+    defineLibraries();
+    debugger; // debugger line!!
+    boot();
+
+    function defineLibraries() {
+        define('jquery', [], function () { return root.jQuery; });
+    };
+    
+    function boot() {
+        require(['bootstrapper'], function(bs) {
+
+            bs.run();
+        });
+    }
+
+})();
+
+-------------------------------- 
+BOOTSTRAPPER.JS
+--------------------------------
+
+define('bootstrapper',
+    ['logger'],
+    function (logger) {
+        var init = function () {
+            logger.appendToLog("Bootstrapper loaded!");
+        },
+            run = function () {
+                logger.appendToLog("This was appended from bootstrapper run function!");
+            };
+
+        init();
+
+        return {
+            run: run
+        };
+    });
+	
+
+-------------------------------- 
+LOGGER.JS
+--------------------------------
+
+define('logger', ['jquery'], function ($) {
+    var init = function () {
+        appendToLog("Logger Loaded!");
+    },
+
+     appendToLog = function (text) {
+         $('#log').append('<li>' + text + '</li>');
+     };
+
+    init();
+
+    return {
+        appendToLog: appendToLog
+    };
+});
+
+-------------------------------- 
+INDEX.HTML logging container
+--------------------------------
+
+<div id="container">
+            <ul id="log">
+                
+            </ul>
+        </div>
+        </div>
+		
+-------------------------------- 
+MAIN.JS - Cache
+--------------------------------		
+		
+var main = function(){
+    "use strict";
+    
+    $('#log').append('<span>Loaded!</span>');
+
+ }();
+ 
+-------------------------------- 
+Web.Config IIS Rule Rewrite
+--------------------------------
+
+     <rewrite>
+      <rules>
+        <rule name="Rewrite for javascript files">
+          <match url="(^|.*/)Scripts/([a-zA-Z0-9]+)\.(\d+)\.js"/>
+          <action type="Rewrite" url="Scripts/{R:2}.js"/>
+        </rule>
+      </rules>
+    </rewrite>
+	
+-------------------------------- 
+JavascriptRequestHandler Rule Rewrite
+--------------------------------
+
+public class JavascriptHandler : IHttpHandler
+    {
+        private const string urlRegex = @"(^|.*/)Scripts/([a-zA-Z0-9]+)\.(\d+)\.js";
+
+        public bool IsReusable { get { return false; } }
+
+        public void ProcessRequest(HttpContext context)
+        {
+            var response = context.Response;
+            var request = context.Request;
+
+            var url = request.AppRelativeCurrentExecutionFilePath.Substring(2);
+            var urlMatch = Regex.Match(url, urlRegex, RegexOptions.None);
+
+            if (!urlMatch.Success)
+                WriteFile(response, request, request.AppRelativeCurrentExecutionFilePath);
+            else
+            {
+                var cleansedUrl = "~/Scripts/" + urlMatch.Groups[2].Value + ".js";
+                WriteFile(response, request, cleansedUrl);
+            }
+        }
+
+        private static void WriteFile(HttpResponse response, HttpRequest request, string virtualPath)
+        {
+            var filePath = GetRealLocation(request, virtualPath);
+            if (filePath != null && File.Exists(filePath))
+            {
+                response.ContentType = "application/javascript";
+                response.WriteFile(Path.GetFileName(filePath));
+            }
+            else
+                Return404(response);
+        }
+
+        private static void Return404(HttpResponse response)
+        {
+            response.Clear();
+            response.StatusCode = 404;
+            response.End();
+        }
+
+        private static string GetRealLocation(HttpRequest request, string virtualPath)
+        {
+            return request.MapPath(virtualPath);
+        }
+
+    }
+
+-------------------------------- 
+Ignore Routes Rule Rewrite
+--------------------------------	
+
+ routes.IgnoreRoute("{*file}", new { file = @"(^|.*/)Scripts/([a-zA-Z0-9]+)\.(\d+)\.js" });
+ 
+-------------------------------- 
+Web.Config System.Web httpHandler
+--------------------------------
+ 
+     <httpHandlers>
+      <add path="*.js" verb="*" type="RequestHandlerRewrite.Code.JavascriptHandler, RequestHandlerRewrite, Version=1.0.0.0, Culture=neutral" />
+    </httpHandlers>
+
+-------------------------------- 
+Web.Config System.WebServer httpHandler
+--------------------------------
+	
+	    <handlers>
+      <add name="js" path="*.js" verb="*" type="RequestHandlerRewrite.Code.JavascriptHandler, RequestHandlerRewrite, Version=1.0.0.0, Culture=neutral" resourceType="Unspecified" preCondition=""/>
+    </handlers>
+	
+-------------------------------- 
+Routes.Add
+--------------------------------
+
+	routes.Add(
+                "javascriptRoute",
+                new Route("Scripts/{*filename}",
+                new JavascriptRouteHandler()));
+				
+-------------------------------- 
+Javascript route handler
+--------------------------------
+
+public class JavascriptRouteHandler : IRouteHandler
+    {
+        public IHttpHandler GetHttpHandler(RequestContext requestContext)
+        {
+            var filename = requestContext.RouteData.Values["filename"] as string;
+
+            return new JavascriptHandler(filename);
+        }
+    }
+	
+-------------------------------- 
+Javascript route handler constructor
+--------------------------------
+
+        private readonly string _filename;
+
+        public JavascriptHandler(string filename)
+        {
+            _filename = filename;
+        }
+
+        private const string urlRegex = @"(^|.*/)Scripts/([a-zA-Z0-9]+)\.(\d+)\.js";
+
+        public bool IsReusable { get { return false; } }
+
+        public void ProcessRequest(HttpContext context)
+        {
+            var response = context.Response;
+            var request = context.Request;
+
+            if (string.IsNullOrEmpty(_filename))
+                Return404(response);
+
+            var url = request.AppRelativeCurrentExecutionFilePath.Substring(2);
+            var urlMatch = Regex.Match(url, urlRegex, RegexOptions.None);
+
+            if (!urlMatch.Success)
+                WriteFile(response, request, request.AppRelativeCurrentExecutionFilePath);
+            else
+            {
+                var cleansedUrl = "~/Scripts/" + urlMatch.Groups[2].Value + ".js";
+                WriteFile(response, request, cleansedUrl);
+            }
+        }
+
+        private static void WriteFile(HttpResponse response, HttpRequest request, string virtualPath)
+        {
+            var filePath = GetRealLocation(request, virtualPath);
+            if (filePath != null && File.Exists(filePath))
+            {
+                response.ContentType = "application/javascript";
+                response.WriteFile(Path.GetFileName(filePath));
+            }
+            else
+                Return404(response);
+        }
+
+        private static void Return404(HttpResponse response)
+        {
+            response.Clear();
+            response.StatusCode = 404;
+            response.End();
+        }
+
+        private static string GetRealLocation(HttpRequest request, string virtualPath)
+        {
+            return request.MapPath(virtualPath);
+        }
+		
+-------------------------------- 
+USE-STRICT : Index.html
+--------------------------------
+		
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Use Strict Example</title>
+</head>
+<body>
+    <script src="Scripts/Main.js" type="text/javascript"></script>
+
+</body>
+</html>
+
+-------------------------------- 
+USE-STRICT : Basic Main.js
+--------------------------------
+
+var main = function(){
+	// "use strict";
+	var printToConsole = function(o){
+		console.log(o);
+	};
+	
+}();
+
+-------------------------------- 
+USE-STRICT : noglobals - before
+--------------------------------
+
+	foo = "bar";
+	printToConsole(foo);
+
+
+-------------------------------- 
+USE-STRICT : noglobals - after
+--------------------------------
+
+	"use strict";
+	foo = "bar";
+	
+-------------------------------- 
+USE-STRICT : extensibleobject - before
+--------------------------------
+
+	var obj = {};
+	obj.name = "QFrame";
+	
+	printToConsole(obj.name);
+	// QFrame
+	
+	printToConsole(Object.isExtensible(obj));
+	// true
+	
+	Object.preventExtensions(obj);
+	
+	obj.url = "http://www.qframe.be"; // no exception
+	
+	printToConsole(obj.url);
+	// undefined
+	
+	printToConsole(Object.isExtensible(obj));
+	// false	
+
+-------------------------------- 
+USE-STRICT : extensibleobject - after
+--------------------------------
+
+	var obj = {};
+	obj.name = "QFrame";
+	
+	printToConsole(obj.name);
+	// QFrame
+	
+	printToConsole(Object.isExtensible(obj));
+	// true
+	
+	Object.preventExtensions(obj);
+	
+	obj.url = "http://www.qframe.be"; // throws exception : non extensible
+	
+-------------------------------- 
+USE-STRICT : multiDefine - before
+--------------------------------
+
+	var obj = { foo: "bar", foo: "rab" }; // no exception, binds last declaration of variable
+    printToConsole(obj);	
+
+-------------------------------- 
+USE-STRICT : multiDefine - after
+--------------------------------
+	var obj = { foo: "bar", foo : "rab" }; // throws exception : duplicate declaration
+	
+-------------------------------- 
+USE-STRICT : propertyDescriptor - before
+--------------------------------
+
+	var obj = {};
+
+    Object.defineProperty(obj, "value", {
+        value: true,
+        writable: false,
+        enumerable: true,
+        configurable: true
+    });
+
+    (function () {
+        var name = "QFrame";
+
+        Object.defineProperty(obj, "name", {
+            get: function () { return name; },
+            set: function (value) { name = value; }
+        });
+    })();
+
+    printToConsole(obj.value);
+    // true
+
+    printToConsole(obj.name);
+    // QFrame
+
+    obj.name = "QFrame NV";
+
+    printToConsole(obj.name);
+    // QFrame NV
+
+    obj.value = false; // no exception
+
+    printToConsole(obj.value);
+    // true
+
+    Object.defineProperty(obj, "value",
+        {
+            writable: true,
+            configurable: false
+        });
+
+    obj.value = false;
+
+    printToConsole(obj.value);
+    // false
+
+    delete obj.value; // no exception	
+
+-------------------------------- 
+USE-STRICT : propertyDescriptor - after
+--------------------------------
+	var obj = {};
+
+    Object.defineProperty(obj, "value", {
+        value: true,
+        writable: false,
+        enumerable: true,
+        configurable: true
+    });
+
+    (function () {
+        var name = "QFrame";
+
+        Object.defineProperty(obj, "name", {
+            get: function () { return name; },
+            set: function (value) { name = value; }
+        });
+    })();
+
+    printToConsole(obj.value);
+    // true
+
+    printToConsole(obj.name);
+    // QFrame
+
+    obj.name = "QFrame NV";
+
+    printToConsole(obj.name);
+    // QFrame NV
+
+    //obj.value = false; // throws exception : writalble : false
+    
+    Object.defineProperty(obj, "value",
+        {
+            writable: true,
+            configurable: false
+        });
+    
+    obj.value = false;
+    
+    printToConsole(obj.value);
+    // false
+    
+    delete obj.value; // throws exception : configurable : false
+	
+-------------------------------- 
+USE-STRICT : eval - before
+--------------------------------
+
+	var eval = {};
+
+    for (var eval in obj) {
+        printToConsole(eval);
+    };
+
+    function eval() {
+    };
+
+    function test(eval) {
+        var foo = eval;
+    };
+
+    var f2 = function (eval) {
+        var foo = eval;
+    };
+
+    eval("var a = false;");
+    printToConsole(typeof a);
+            // boolean	
+
+-------------------------------- 
+USE-STRICT : eval - after
+--------------------------------
+
+    eval("var a = false;");
+    printToConsole(typeof a);
+    //undefined
+	
+-------------------------------- 
+USE-STRICT : functions - arguments - before
+--------------------------------
+
+	arguments = [""];
+	printToConsole(arguments);	
+	
+-------------------------------- 
+USE-STRICT : functions - arguments - before
+--------------------------------
+
+	var identicalArguments = function (par, par) {
+    printToConsole(par);
+    // test2
+	};
+
+-------------------------------- 
+USE-STRICT : functions - callee - before
+--------------------------------
+	
+	var argumentsCallee = function () {
+        return function (n) {
+            if (n <= 1)
+                return 1;
+            return n * arguments.callee(n - 1);
+        };
+    };
+
+-------------------------------- 
+USE-STRICT : functions - callee - after
+--------------------------------
+
+	var argumentsCallee = function () {
+        return function rec(n) {
+            if (n <= 1)
+                return 1;
+            return n * rec(n - 1);
+        };
+    };
+
+-------------------------------- 
+USE-STRICT : functions - with - before
+--------------------------------	
+
+	var obj = {};
+
+    with ({ o: obj }) {
+        o.name = "QFrame";
+        o.url = "http://www.qframe.be";
+    };
+                
+    printToConsole(obj);

@@ -41,7 +41,7 @@
     <Content Include="Index.html" />
     <None Include="Scripts\lib\jquery\jquery-2.0.0.intellisense.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
-    <Content Include="Scripts\app\presenter.js" />
+    <Content Include="Scripts\app\logger.js" />
     <Content Include="Scripts\lib\jquery\jquery-2.0.0.js" />
     <Content Include="Scripts\lib\jquery\jquery-2.0.0.min.js" />
     <Content Include="Scripts\lib\requirejs\r.js" />
